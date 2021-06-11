@@ -4,8 +4,13 @@ project(logging LANGUAGES CXX)
 
 #ADD_SUBDIRECTORY(lib)
 
-include_directories(/usr/local/include)
-find_library(LOG4CXX liblog4cxx.dylib)
+find_library(LOG4CXX
+    NAMES
+    ${LIBPREFIX}log4cxx${LIBSUFFIX}
+     PATHS
+    ${LIBRARY_SEARCH_PATHS})
+
+message(${LOG4CXX})
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_ROOT_PATH}/lib)
 

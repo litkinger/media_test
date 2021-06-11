@@ -17,6 +17,7 @@
 #include "apr.h"
 #include "apr_atomic.h"
 #include "apr_thread_mutex.h"
+#include <winnt.h>
 
 APR_DECLARE(apr_status_t) apr_atomic_init(apr_pool_t *p)
 {

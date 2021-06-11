@@ -21,11 +21,11 @@ public:
 class CommonLog {
 public:
     enum {
-        FATAL = 0,
-        ERROR = 1,
-        WARN = 2,
-        INFO = 3,
-        DEBUG = 4,
+        FATAL,
+        ERR,
+        WARN,
+        INFO,
+        DEBUG
     };
 
     class LogRecord {

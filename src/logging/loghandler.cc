@@ -1,5 +1,6 @@
 #include "loghandler.h"
 #include <log4cxx/logger.h>
+#include <string>
 
 namespace sunhi { namespace common { namespace log {
 
@@ -32,7 +33,7 @@ void Log4cxxHandler::logMessage(int level, const char* module, const char* msg) 
             LOG4CXX_INFO(this->logger, module_ << msg);
         } else if (level == CommonLog::WARN){
             LOG4CXX_WARN(this->logger, module_ << msg);
-        } else if (level == CommonLog::ERROR) {
+        } else if (level == CommonLog::ERR) {
             LOG4CXX_ERROR(this->logger, module_ << msg);
         }else if (level == CommonLog::FATAL) {
             LOG4CXX_FATAL(this->logger, module_ << msg);

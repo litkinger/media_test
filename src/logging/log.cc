@@ -1,6 +1,7 @@
 #include "log.h"
 #include <iostream>
 #include <exception>
+#include <string>
 
 namespace sunhi { namespace common { namespace log {
 

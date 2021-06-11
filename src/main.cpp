@@ -39,6 +39,8 @@
 #include <stdio.h>
 #include <QCoreApplication>
 
+#define WEBRTC_WIN 1
+
 #include "logging/log.h"
 #include "logging/loghandler.h"
 #include "api/scoped_refptr.h"
@@ -109,7 +111,11 @@ int main(int argc, char* argv[])
     SDL_Event event;
  
     struct SwsContext *img_convert_ctx;
-     char filepath[]="/Users/yaoping.zheng/Documents/mediademo/kfc.mp4";
+#if _WINDOWS
+    char filepath[]="D:/bin/kfc.mp4";
+#else
+    char filepath[]="/Users/yaoping.zheng/Documents/mediademo/kfc.mp4";
+#endif
 
     MAIN_LOG(DEBUG) << "zyptest " << std::endl;
 
@@ -135,7 +141,7 @@ int main(int argc, char* argv[])
     videoindex=-1;
     audioindex = -1;
     for(i=0; i<pFormatCtx->nb_streams; i++) 
-        if(pFormatCtx->streams[i]->codec->codec_type==AVMEDIA_TYPE_VIDEO){
+        if(pFormatCtx->streams[i]->codec->codec_type==AVMEDIA_TYPE_VIDEO && videoindex == -1){
             videoindex=i;
         } else if (pFormatCtx->streams[i]->codec->codec_type == AVMEDIA_TYPE_AUDIO) {
             audioindex = i;

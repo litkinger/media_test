@@ -5,18 +5,19 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <pthread.h>
 
-#ifdef _WIN32
+#ifdef _WIN64
 //Windows
 extern "C"
 {
+#include <windows.h>
 #include "libavcodec/avcodec.h"
 #include "libavformat/avformat.h"
 #include "libswscale/swscale.h"
 #include "libavutil/imgutils.h"
 #include "libavutil/log.h"
-#include "SDL2/SDL.h"
+#include <SDL.h>
+#include <SDL_main.h>
 };
 #else
 //Linux...
@@ -47,7 +48,7 @@ private:
     Avcommon();
     Avcommon(const Avcommon &avcommon);
     Avcommon& operator = (const Avcommon &avcommon);
-    static pthread_key_t key;
+    //static pthread_key_t key;
 };
 }
 

@@ -72,8 +72,6 @@ typedef unsigned int log4cxx_uint32_t;
 template class LOG4CXX_EXPORT log4cxx::helpers::ObjectPtrT<T>; \
 typedef log4cxx::helpers::ObjectPtrT<T> T##Ptr
 #define LOG4CXX_LIST_DEF(N, T) \
-template class LOG4CXX_EXPORT std::allocator<T>; \
-template class LOG4CXX_EXPORT std::vector<T>; \
 typedef std::vector<T> N
 //
 //   pointer and list definition macros when linking with DLL using VC
