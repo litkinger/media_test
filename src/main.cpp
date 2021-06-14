@@ -39,7 +39,7 @@
 #include <stdio.h>
 #include <QCoreApplication>
 
-#define WEBRTC_WIN 1
+//#define WEBRTC_WIN 1
 
 #include "logging/log.h"
 #include "logging/loghandler.h"

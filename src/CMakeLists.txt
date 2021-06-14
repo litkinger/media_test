@@ -114,6 +114,8 @@ set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSDL2
     audio.h
     avcommon.h
     avcommon.cpp
+    packetqueue.h
+    packetqueue.cpp
   )
 #endif()
 
