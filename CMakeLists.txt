@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(media_test LANGUAGES CXX)
+SET(PROJECT_ROOT_PATH "${CMAKE_SOURCE_DIR}/build-media_test-Desktop_Qt_5_12_10_clang_64bit-Debug")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,7 +19,7 @@ if (CMAKE_HOST_WIN32)
     set(WINDOWS 1)
     set(LIBSUFFIX .lib)
     set(LIBPREFIX )
-    set(LIBRARY_SEARCH_PATHS
+    set(LIBRARY_SEARCH_PATHSf
         C:/msys64/usr/src/src/third_party/ffmpeg/x64
         D:/workspace/leelen/source/freeswitch/x64/Debug
         C:/msys64/usr/src/src/third_party/sdl/x64
@@ -38,6 +39,7 @@ elseif(CMAKE_HOST_APPLE)
         ../3rd/apr-1.7.0/.libs/
         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/
         /usr/local/lib/
+        /usr/local/apr/lib
     )
     include_directories(/usr/local/include)
 elseif(CMAKE_HOST_UNIX)

@@ -58,8 +58,6 @@ public:
 
         private:
             char buf[10240];
-            int overflow(int c);//overwrite
-            int sync();//overwrite
             void release();
 
             int level;

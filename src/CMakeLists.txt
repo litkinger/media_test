@@ -11,9 +11,6 @@ find_library(LIBAVCODEC
     ${LIBPREFIX}avcodec${LIBSUFFIX}
      PATHS
     ${LIBRARY_SEARCH_PATHS})
-
-message(${LIBAVCODEC})
-
 find_library(LIBAVFORMAT
     NAMES
     ${LIBPREFIX}avformat${LIBSUFFIX}
@@ -29,21 +26,32 @@ find_library(LIBSWSCALE
     ${LIBPREFIX}swscale${LIBSUFFIX}
      PATHS
     ${LIBRARY_SEARCH_PATHS})
-find_library(ARP
-    NAMES
-    libaprutil${LIBSUFFIX}
-     PATHS
-    ${LIBRARY_SEARCH_PATHS})
-find_library(LIBSDL2
-    NAMES
-    SDL2${LIBSUFFIX}
-     PATHS
-    ${LIBRARY_SEARCH_PATHS})
-find_library(LIBSDL2MAIN
-    NAMES
-    SDL2main${LIBSUFFIX}
-     PATHS
-    ${LIBRARY_SEARCH_PATHS})
+
+
+if(WINDOWS)
+    find_library(ARP
+        NAMES
+        libaprutil${LIBSUFFIX}
+         PATHS
+        ${LIBRARY_SEARCH_PATHS})
+    find_library(LIBSDL2
+        NAMES
+        ${LIBPREFIX}SDL2${LIBSUFFIX} ${LIBPREFIX}SDL2main${LIBSUFFIX}
+         PATHS
+        ${LIBRARY_SEARCH_PATHS})
+elseif(MACOS)
+    find_library(ARP
+        NAMES
+        libapr-1.dylib libaprutil-1.dylib
+        PATHS
+        ${LIBRARY_SEARCH_PATHS})
+    find_library(LIBSDL2
+        NAMES
+        ${LIBPREFIX}SDL2${LIBSUFFIX}
+         PATHS
+        ${LIBRARY_SEARCH_PATHS})
+endif()
+
 
 
 find_library(LOG4CXX
@@ -58,7 +66,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_ROOT_PATH}/bin)
 
 MARK_AS_ADVANCED(LIBAVCODEC LIBAVUTIL LIBSWSCALE LIBAVFORMAT)
-set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSDL2} ${LIBSDL2MAIN} ${ARP} ${LOG4CXX} )
+set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSDL2} ${ARP} ${LOG4CXX} )
 
 #macro(ADD_FRAMEWORK appname fwname)
 #find_library(FRAMEWORK_${fwname} NAMES ${fwname} PATHS ${CMAKE_OSX_SYSROOT}/System/Library PATH_SUFFIXES Frameworks NO_DEFAULT_PATH)

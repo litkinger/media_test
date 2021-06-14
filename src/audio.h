@@ -2,19 +2,12 @@
 #ifndef __AUDIO_H_
 #define __AUDIO_H_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+class Audio{
+public:
 
-#include <libavformat/avformat.h>
 
-int audioInit(AVCodecContext* pAudioCodecContext);
-void audioDestroy();
+private:
 
-#ifdef __cplusplus
-}
-#endif
-
+};
 
 #endif

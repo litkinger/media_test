@@ -121,32 +121,6 @@ void CommonLog::LogRecord::LogStreamEntity::setModule(const std::string& module)
 CommonLog::LogRecord::LogStreamEntity::~LogStreamEntity() {
 }
 
-int CommonLog::LogRecord::LogStreamEntity::overflow(int c) {
-    std::shared_ptr<LogHandler> shandler = whandler.lock();
-
-    *pptr() = '\0';
-
-    if (shandler) {
-        shandler->logMessage(level, module.c_str(), pbase());
-    }
-
-    int nbytes = pptr() - pbase();
-    pbump(-nbytes);
-
-    if (c == EOF)
-        return EOF;
-
-    *pptr() = c;
-    pbump(1);
-
-    return 0;
-}
-
-int CommonLog::LogRecord::LogStreamEntity::sync()
-{
-    return 0;
-}
-
 void CommonLog::LogRecord::LogStreamEntity::release()
 {
     std::shared_ptr<LogHandler> shandler = whandler.lock();
