@@ -27,6 +27,12 @@ find_library(LIBSWSCALE
      PATHS
     ${LIBRARY_SEARCH_PATHS})
 
+find_library(LIBSWRESAMPLE
+    NAMES
+    ${LIBPREFIX}swresample${LIBSUFFIX}
+     PATHS
+    ${LIBRARY_SEARCH_PATHS})
+
 
 if(WINDOWS)
     find_library(ARP
@@ -66,7 +72,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_ROOT_PATH}/bin)
 
 MARK_AS_ADVANCED(LIBAVCODEC LIBAVUTIL LIBSWSCALE LIBAVFORMAT)
-set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSDL2} ${ARP} ${LOG4CXX} )
+set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSWRESAMPLE} ${LIBSDL2} ${ARP} ${LOG4CXX} )
 
 #macro(ADD_FRAMEWORK appname fwname)
 #find_library(FRAMEWORK_${fwname} NAMES ${fwname} PATHS ${CMAKE_OSX_SYSROOT}/System/Library PATH_SUFFIXES Frameworks NO_DEFAULT_PATH)
@@ -116,6 +122,10 @@ set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSDL2
     avcommon.cpp
     packetqueue.h
     packetqueue.cpp
+    media.cpp
+    media.h
+    framequeue.cpp
+    framequeue.h
   )
 #endif()
 

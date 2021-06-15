@@ -14,7 +14,7 @@ class PacketQueue
 public:
     PacketQueue();
     ~PacketQueue();
-    bool enQueue(const AVPacket packet);
+    bool enQueue(const AVPacket &packet);
     AVPacket deQueue();
     uint32_t getPacketSize();
     void queueFlush();

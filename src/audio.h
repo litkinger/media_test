@@ -11,7 +11,11 @@ public:
     ~Audio();
     const uint32_t BUFFERSIZE = 192000;
     bool audioPlay();
+    bool audioClose();//音频关闭
+    double getCurrentAudioClock();//获取当前音频时钟
+    int getStreamIndex();
     void setStreamIndex(const int streamIndex);
+    int getAudioQueueSize();
     void enqueuePacket(const AVPacket pkt);
     AVPacket dequeuePacket();
     uint8_t* getAudioBuff();

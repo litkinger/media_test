@@ -13,7 +13,7 @@ PacketQueue::~PacketQueue()
     isExit = true;
 }
 
-bool PacketQueue::enQueue(const AVPacket packet)
+bool PacketQueue::enQueue(const AVPacket &packet)
 {
     QMutexLocker locker(&mutex);
     queue.push(packet);
