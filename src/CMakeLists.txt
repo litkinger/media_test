@@ -4,8 +4,6 @@ project(ffmpeg_sdl_test LANGUAGES CXX)
 
 add_subdirectory(logging)
 
-message(${LIBPREFIX}avcodec${LIBSUFFIX})
-
 find_library(LIBAVCODEC
     NAMES
     ${LIBPREFIX}avcodec${LIBSUFFIX}
@@ -37,7 +35,7 @@ find_library(LIBSWRESAMPLE
 if(WINDOWS)
     find_library(ARP
         NAMES
-        libaprutil${LIBSUFFIX}
+        aprutil-1${LIBSUFFIX}
          PATHS
         ${LIBRARY_SEARCH_PATHS})
     find_library(LIBSDL2
@@ -98,6 +96,8 @@ set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSWRE
 #    endif()
 #endif()
 
+#aux_source_directory(. srcs)
+FILE(GLOB SC_FILES "*.cpp" "*.h")
 
 #link_directories(${CMAKE_OSX_SYSROOT}/System/Library)
 
@@ -112,21 +112,8 @@ set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSWRE
 #    avcommon.cpp
 #  )
 #else()
-  add_executable(ffmpeg_sdl_test
-    main.cpp
-    video.h
-    video.cpp
-    audio.cpp
-    audio.h
-    avcommon.h
-    avcommon.cpp
-    packetqueue.h
-    packetqueue.cpp
-    media.cpp
-    media.h
-    framequeue.cpp
-    framequeue.h
-  )
+
+add_executable(ffmpeg_sdl_test ${SC_FILES})
 #endif()
 
 #add_framework(ffmpeg_sdl_test VideoToolbox)

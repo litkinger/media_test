@@ -37,9 +37,10 @@
  */
  
 #include <stdio.h>
-#include <QCoreApplication>
+#include <iostream>
+#include <QApplication>
 
-//#define WEBRTC_WIN 1
+#define WEBRTC_WIN 1
 
 #include "logging/log.h"
 #include "logging/loghandler.h"
@@ -90,6 +91,7 @@ static CommonLog commonLogger(logHandler,"main");
 
 #define MAIN_LOG(level) COMMON_LOG(commonLogger, level)
  
+#undef main
 int main(int argc, char* argv[])
 {
     AVFormatContext *pFormatCtx;
@@ -112,12 +114,12 @@ int main(int argc, char* argv[])
  
     struct SwsContext *img_convert_ctx;
 #if _WINDOWS
-    char filepath[]="D:/bin/kfc.mp4";
+    char filepath[]="kfc.mp4";
 #else
     char filepath[]="/Users/yaoping.zheng/Documents/mediademo/kfc.mp4";
 #endif
 
-    MAIN_LOG(DEBUG) << "zyptest " << std::endl;
+    MAIN_LOG(INFO) << "zyptest " << std::endl;
 
     MAIN_LOG(WARN) <<  "starting...." << (const char*)argv[0] << std::endl;
 

@@ -19,13 +19,12 @@ if (CMAKE_HOST_WIN32)
     set(WINDOWS 1)
     set(LIBSUFFIX .lib)
     set(LIBPREFIX )
-    set(LIBRARY_SEARCH_PATHSf
+    set(LIBRARY_SEARCH_PATHS
         C:/msys64/usr/src/src/third_party/ffmpeg/x64
-        D:/workspace/leelen/source/freeswitch/x64/Debug
         C:/msys64/usr/src/src/third_party/sdl/x64
         D:/workspace/opensource/SDL2/lib/x64
         D:/workspace/mycode/media_test/3rd/apache-log4cxx-0.10.0/projects/x64/Debug
-        src
+        D:/workspace/mycode/media_test/3rd/apr-util/LibD
     )
     include_directories(C:/msys64/usr/local/ffmpeg/include)
     include_directories(C:/msys64/usr/src/src/third_party/sdl/include)
