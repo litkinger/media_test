@@ -2,7 +2,6 @@
 #include "avcommon.h"
 #include "logging/log.h"
 
-extern std::shared_ptr<LogHandler> logHandler;
 static CommonLog commonLogger(logHandler,"");
 
 #define FFMPEG_LOG(level) COMMON_LOG(commonLogger, level)

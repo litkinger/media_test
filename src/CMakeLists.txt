@@ -97,7 +97,7 @@ set(extra_libs ${LIBAVCODEC} ${LIBAVUTIL} ${LIBSWSCALE} ${LIBAVFORMAT} ${LIBSWRE
 #endif()
 
 #aux_source_directory(. srcs)
-FILE(GLOB SC_FILES "*.cpp" "*.h")
+#FILE(GLOB SC_FILES "*.cpp" "*.h" "*.ui")
 
 #link_directories(${CMAKE_OSX_SYSROOT}/System/Library)
 
@@ -112,8 +112,31 @@ FILE(GLOB SC_FILES "*.cpp" "*.h")
 #    avcommon.cpp
 #  )
 #else()
-
-add_executable(ffmpeg_sdl_test ${SC_FILES})
+add_executable(ffmpeg_sdl_test
+    main.cpp
+    video.h
+    video.cpp
+    audio.cpp
+    audio.h
+    avcommon.h
+    avcommon.cpp
+    packetqueue.h
+    packetqueue.cpp
+    media.cpp
+    media.h
+    framequeue.cpp
+    framequeue.h
+    playerui.cpp
+    playerui.h
+    PlayerUi.ui
+    mediaplayer.cpp
+    mediaplayer.h
+    readpacketsthread.cpp
+    readpacketsthread.h
+    playeropengl.cpp
+    playeropengl.h
+    playeropengl.ui
+  )
 #endif()
 
 #add_framework(ffmpeg_sdl_test VideoToolbox)

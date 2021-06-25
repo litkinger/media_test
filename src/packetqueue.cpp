@@ -11,6 +11,7 @@ PacketQueue::~PacketQueue()
 {
     QMutexLocker locker(&mutex);
     isExit = true;
+    cond.wakeOne();
 }
 
 bool PacketQueue::enQueue(const AVPacket &packet)
@@ -40,6 +41,9 @@ AVPacket PacketQueue::deQueue()
         else
         {
             cond.wait(&mutex);
+            if (isExit) {
+                break;
+            }
         }
     }
     return pkt;

@@ -17,6 +17,7 @@ extern "C"
 #include "libswresample/swresample.h"
 #include "libavutil/imgutils.h"
 #include "libavutil/log.h"
+#include "libavutil/time.h"
 #include <SDL.h>
 #include <SDL_main.h>
 };
@@ -32,12 +33,14 @@ extern "C"
 #include <libswresample/swresample.h>
 #include <libavutil/imgutils.h>
 #include <libavutil/log.h>
+#include <libavutil/time.h>
 #include <SDL2/SDL.h>
 #ifdef __cplusplus
 };
 #endif
 #endif
 
+#include "logging/log.h"
 
 namespace AvLog {
 
@@ -53,5 +56,7 @@ private:
     //static pthread_key_t key;
 };
 }
+
+extern std::shared_ptr<LogHandler> logHandler;
 
 #endif

@@ -1,6 +1,9 @@
 #include "video.h"
 #include <QMutexLocker>
 
+static CommonLog commonLogger(logHandler,"audio");
+#define VIDEO_LOG(level) COMMON_LOG(commonLogger, level)
+
 static bool isExit = false;
 
 Video::Video()
@@ -20,7 +23,6 @@ Video::~Video()
     isExit = true;
     locker.unlock();
     wait();
-
 }
 
 //************************************
@@ -180,19 +182,20 @@ void Video::setFrameTimer(const double & frameTimer)
 //************************************
 void Video::run()
 {
-     AVFrame * frame = av_frame_alloc();
+    AVFrame * frame = av_frame_alloc();
     double pts;
     AVPacket pkt;
+
+    VIDEO_LOG(INFO) << "Video::run..." << std::endl;
+
     while (!isExit)
     {
         QMutexLocker locker(&mutex);
         if (frameQueue.getQueueSize() >= FrameQueue::capacity) {//视频帧多于30帧就等待消费
-            locker.unlock();
             msleep(100);
             continue;
         }
         if (videoPackets->getPacketSize() == 0) {//没帧等待帧入队
-            locker.unlock();
             msleep(100);
             continue;
         }

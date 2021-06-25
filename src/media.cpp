@@ -3,13 +3,10 @@
 #include "video.h"
 #include "logging/log.h"
 
-//#include "ReadPacketsThread.h"
-//#include "DisplayMediaTimer.h"
-extern "C" {
-#include <libavutil/time.h>
-}
+#include "readpacketsthread.h"
+#include "mediaplayer.h"
+#include "avcommon.h"
 
-extern std::shared_ptr<LogHandler> logHandler;
 static CommonLog commonLogger(logHandler,"media");
 #define MEDIA_LOG(level) COMMON_LOG(commonLogger, level)
 
@@ -111,8 +108,8 @@ Media *  Media::config() {
     video->setFrameTimer(static_cast<double>(av_gettime()) / 1000000.0);//设置初始视频帧时间用于音视同步
     video->setFrameLastDelay(40e-3) ;//计算时间，TODO*/
     audio->audioPlay();
-    //ReadPacketsThread::getInstance()->setPlaying(true);
-    //DisplayMediaTimer::getInstance()->setPlay(true);
+    ReadPacketsThread::getInstance()->setPlaying(true);
+    MediaPlayer::getInstance()->play(true);
     return this;
 }
 

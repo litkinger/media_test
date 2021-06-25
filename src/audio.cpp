@@ -1,11 +1,13 @@
 
 #include "audio.h"
 #include "media.h"
+#include "logging/log.h"
 #include <fstream>
 
 static int audioVolume = 64;
 
-
+static CommonLog commonLogger(logHandler,"audio");
+#define AUDIO_LOG(level) COMMON_LOG(commonLogger, level)
 
 Audio::Audio()
 {
@@ -405,6 +407,7 @@ int audioDecodeFrame(Audio*audio, uint8_t *audioBuffer, int bufferSize) {
         return -1;*/
     if (pkt.size <= 0)
     {
+        AUDIO_LOG(ERR) << "pkg size is zero" << std::endl;
         return -1;
     }
 
